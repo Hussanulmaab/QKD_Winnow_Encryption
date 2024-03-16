@@ -1,6 +1,6 @@
 import pickle
 
-with open("Removal_Block_file.txt", 'rb') as Removal_bits:
+with open("../Removal_Block_file.txt", 'rb') as Removal_bits:
     Alice_Removal_Blocks = pickle.load(Removal_bits)
     Removal_bits.close()
 
@@ -8,7 +8,7 @@ with open("Removal_Block_file.txt", 'rb') as Removal_bits:
 #     Unchanged_data = Alice_Sifted.read()
 #     Alice_Sifted.close()
 
-with open("check.txt", 'r') as Alice_Sifted:
+with open("../check.txt", 'r') as Alice_Sifted:
     Unchanged_data = Alice_Sifted.read()
     Alice_Sifted.close()
 
@@ -39,7 +39,7 @@ for i in range(int(len(Unchanged_data)/7)):
 print("After  : " + Corrected_Alice_Bits)
 print("Removed Alice bits and Created the file 'NAMED = Final_Alice_Bits_File.txt'")
 
-with open("Final_Alice_Bits_File.txt", "w") as Final_Alice_Bits:
+with open("../Final_Alice_Bits_File.txt", "w") as Final_Alice_Bits:
     Final_Alice_Bits.write(Corrected_Alice_Bits)
 
 Final_Alice_Bits.close()

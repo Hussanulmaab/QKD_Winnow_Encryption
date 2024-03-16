@@ -1,9 +1,9 @@
 import pickle
 
-with open("Bob_Encrypted_File.txt", 'r') as Bob_Encrypted:
+with open("../Bob_Encrypted_File.txt", 'r') as Bob_Encrypted:
     Bob_Encrypted_Var = Bob_Encrypted.read()
 
-with open("Alice_Encrypted_File.txt", 'r') as Alice_Encrypted:
+with open("../Alice_Encrypted_File.txt", 'r') as Alice_Encrypted:
     Alice_Encrypted_Var = Alice_Encrypted.read()
 
 # with open("Bob_Sifted_File.txt", 'r') as Bob_Sifted:
@@ -12,10 +12,10 @@ with open("Alice_Encrypted_File.txt", 'r') as Alice_Encrypted:
 # with open("Alice_Sifted_File.txt", 'r') as Alice_Sifted:
 #     Alice_Sifted_Var = Alice_Sifted.read()
 
-with open("checkError.txt", 'r') as Bob_Sifted:
+with open("../checkError.txt", 'r') as Bob_Sifted:
     Bob_Sifted_Var = Bob_Sifted.read()
 
-with open("check.txt", 'r') as Alice_Sifted:
+with open("../check.txt", 'r') as Alice_Sifted:
     Alice_Sifted_Var = Alice_Sifted.read()
 
 print("Ali 1 : " + Alice_Sifted_Var)
@@ -105,10 +105,10 @@ for i in range(0, int(len(Alice_Encrypted_Var) / 4)):
 print("Bob 2 : " + Corrected_Bob_Sifted_Var)
 print("List : " + str(Alice_Removal_Blocks))
 
-with open("Final_Bob_Bits_File.txt", "w") as Final_Bob_Bits:
+with open("../Final_Bob_Bits_File.txt", "w") as Final_Bob_Bits:
     Final_Bob_Bits.write(Corrected_Bob_Sifted_Var)
 
-with open("Removal_Block_file.txt", 'wb') as Removal_bits:
+with open("../Removal_Block_file.txt", 'wb') as Removal_bits:
     pickle.dump(Alice_Removal_Blocks, Removal_bits)
 
 # closing files
