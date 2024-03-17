@@ -1,7 +1,4 @@
 import numpy as np
-
-# Hamming (7,4)
-
 # # Breaking file data into blocks
 # f = open("Alice_Sifted_File.txt", "r")
 # data = f.read()

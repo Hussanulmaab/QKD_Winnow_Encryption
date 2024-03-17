@@ -4,10 +4,10 @@
 # with open("Bob_Sifted_File.txt", 'r') as Bob_Sifted_bits:
 #     Bob_Bits = Bob_Sifted_bits.read()
 
-with open("check.txt", 'r') as Alice_Sifted_bits:
+with open("../check.txt", 'r') as Alice_Sifted_bits:
     Alice_Bits = Alice_Sifted_bits.read()
 
-with open("checkError.txt", 'r') as Bob_Sifted_bits:
+with open("../checkError.txt", 'r') as Bob_Sifted_bits:
     Bob_Bits = Bob_Sifted_bits.read()
 
 # Before Winnow Encryption
@@ -34,10 +34,10 @@ print("Error Percentage is " + str(Error_Percentage))
 
 # After Winnow Encryption
 
-with open("Final_Alice_Bits_File.txt", 'r') as Alice_Sifted_bits:
+with open("../Final_Alice_Bits_File.txt", 'r') as Alice_Sifted_bits:
     Alice_Bits = Alice_Sifted_bits.read()
 
-with open("Final_Bob_Bits_File.txt", 'r') as Bob_Sifted_bits:
+with open("../Final_Bob_Bits_File.txt", 'r') as Bob_Sifted_bits:
     Bob_Bits = Bob_Sifted_bits.read()
 
 print("\n-------------------------------------------After WINNOW ENCRYPTION -----------------------------------------\n")

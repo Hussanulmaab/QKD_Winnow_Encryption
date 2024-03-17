@@ -14,7 +14,7 @@ with open("sifted_File.txt", 'w') as sifted:
 sifted.close()
 
 # Opening raw data file
-with open("Data_File.txt", 'r') as file:
+with open("../Data_File.txt", 'r') as file:
     i = -1
     for line in file:
       i+=1

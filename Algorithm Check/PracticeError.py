@@ -19,10 +19,10 @@ def main():
         if error_percentage < 0 or error_percentage > 100:
             print("Please enter a percentage between 0 and 100.")
             return
-        with open('check.txt', 'r') as file:
+        with open('../check.txt', 'r') as file:
             bits = file.read().strip()
         error_bits = induce_errors(bits, error_percentage)
-        with open('checkError.txt', 'w') as error_file:
+        with open('../checkError.txt', 'w') as error_file:
             error_file.write(error_bits)
         print(f"File 'checkError.txt' created with induced errors ({error_percentage}%).")
     except ValueError:
