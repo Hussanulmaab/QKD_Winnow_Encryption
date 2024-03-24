@@ -34,10 +34,10 @@ print("Error Percentage is " + str(Error_Percentage))
 
 # After Winnow Encryption
 
-with open("../Final_Alice_Bits_File.txt", 'r') as Alice_Sifted_bits:
+with open("../FInal Files/Final_Alice_Bits_File.txt", 'r') as Alice_Sifted_bits:
     Alice_Bits = Alice_Sifted_bits.read()
 
-with open("../Final_Bob_Bits_File.txt", 'r') as Bob_Sifted_bits:
+with open("../FInal Files/Final_Bob_Bits_File.txt", 'r') as Bob_Sifted_bits:
     Bob_Bits = Bob_Sifted_bits.read()
 
 print("\n-------------------------------------------After WINNOW ENCRYPTION -----------------------------------------\n")

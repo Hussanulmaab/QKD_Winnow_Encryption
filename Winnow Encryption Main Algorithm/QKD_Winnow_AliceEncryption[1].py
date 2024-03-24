@@ -1,7 +1,4 @@
 import numpy as np
-# # Breaking file data into blocks
-# f = open("Alice_Sifted_File.txt", "r")
-# data = f.read()
 
 f = open("../check.txt", "r")
 data = f.read()

@@ -1,11 +1,5 @@
 import numpy as np
 
-# Hamming (7,4)
-
-# # Breaking file data into blocks
-# f = open("Bob_Sifted_File.txt", "r")
-# data = f.read()
-
 f = open("../checkError.txt", "r")
 data = f.read()
 
