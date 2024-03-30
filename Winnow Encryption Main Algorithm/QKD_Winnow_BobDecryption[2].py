@@ -105,7 +105,7 @@ for i in range(0, int(len(Alice_Encrypted_Var) / 4)):
 print("Bob 2 : " + Corrected_Bob_Sifted_Var)
 print("List : " + str(Alice_Removal_Blocks))
 
-with open("../Final Files/Final_Bob_Bits_File.txt", "w") as Final_Bob_Bits:
+with open("Bob_Error_Reconciliated.txt", "w") as Final_Bob_Bits:
     Final_Bob_Bits.write(Corrected_Bob_Sifted_Var)
 
 with open("../Removal_Block_file.txt", 'wb') as Removal_bits:

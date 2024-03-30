@@ -37,9 +37,9 @@ for i in range(int(len(Unchanged_data)/7)):
     counter += 1
 
 print("After  : " + Corrected_Alice_Bits)
-print("Removed Alice bits and Created the file 'NAMED = Final_Alice_Bits_File.txt'")
+print("Removed Alice bits and Created the file 'NAMED = Alice_Error_Reconciliated.txt'")
 
-with open("../Final Files/Final_Alice_Bits_File.txt", "w") as Final_Alice_Bits:
+with open("Alice_Error_Reconciliated.txt", "w") as Final_Alice_Bits:
     Final_Alice_Bits.write(Corrected_Alice_Bits)
 
 Final_Alice_Bits.close()
