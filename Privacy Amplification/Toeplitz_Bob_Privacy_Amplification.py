@@ -44,3 +44,15 @@ print("Seed")
 print(seed_bits)
 print("Output")
 print(final)
+
+#  --------------------------------------------------------------------------------------
+Bob_final = ''.join(str(bit) for bit in final)
+
+# Specify the file path
+file_path = 'Bob.txt'
+
+# Open the file in write mode and write the binary string to it
+with open(file_path, 'w') as file:
+    file.write(Bob_final)
+
+print("Binary string has been written to", file_path)
