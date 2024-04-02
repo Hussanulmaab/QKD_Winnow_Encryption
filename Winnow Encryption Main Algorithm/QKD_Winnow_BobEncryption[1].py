@@ -3,7 +3,7 @@ import numpy as np
 f = open("../checkError.txt", "r")
 data = f.read()
 
-with open("../Bob_Encrypted_File.txt", "w") as Bob_Encrypted:
+with open("Bob_Encrypted_File.txt", "w") as Bob_Encrypted:
     print("Bob Encryption created")
 Bob_Encrypted.close()
 
@@ -44,7 +44,7 @@ def Syndrome_Calculation():
     elif (parity_check % 2) == 1:
         Synd_Vector += str(1)
 
-    with open("../Bob_Encrypted_File.txt", "a") as Bob_Encrypted:
+    with open("Bob_Encrypted_File.txt", "a") as Bob_Encrypted:
 
         for row in range(len(H3_Syndrome_Cal_Matrix)):
             temp = 0

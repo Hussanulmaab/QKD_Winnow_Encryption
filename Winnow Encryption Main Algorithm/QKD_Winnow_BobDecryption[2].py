@@ -1,9 +1,9 @@
 import pickle
 
-with open("../Bob_Encrypted_File.txt", 'r') as Bob_Encrypted:
+with open("Bob_Encrypted_File.txt", 'r') as Bob_Encrypted:
     Bob_Encrypted_Var = Bob_Encrypted.read()
 
-with open("../Alice_Encrypted_File.txt", 'r') as Alice_Encrypted:
+with open("Alice_Encrypted_File.txt", 'r') as Alice_Encrypted:
     Alice_Encrypted_Var = Alice_Encrypted.read()
 
 # with open("Bob_Sifted_File.txt", 'r') as Bob_Sifted:
