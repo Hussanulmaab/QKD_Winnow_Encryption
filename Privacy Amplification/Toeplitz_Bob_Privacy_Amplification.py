@@ -24,7 +24,7 @@ def privacy_amplification(raw_key_bits: list, seed_bits: list, n_1, m):
     return toeplitz.extract(raw_key_bits, seed_bits)
 
 
-with open("../Winnow Encryption Main Algorithm/Bob_Error_Reconciliated.txt", 'r') as Bob_data:
+with open("../Winnow Encryption Main Algorithm/Bob_Winnow-1_Final.txt", 'r') as Bob_data:
     Bob_Winnow_string = Bob_data.read()
     Bob_data.close()
 

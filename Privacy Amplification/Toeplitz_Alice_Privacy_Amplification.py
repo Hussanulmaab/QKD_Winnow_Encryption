@@ -24,7 +24,7 @@ def privacy_amplification(raw_key_bits: list, seed_bits: list, n_1, m):
     return toeplitz.extract(raw_key_bits, seed_bits)
 
 
-with open("../Winnow Encryption Main Algorithm/Alice_Error_Reconciliated.txt", 'r') as Alice_data:
+with open("../Winnow Encryption Main Algorithm/Alice_Winnow-1_Final.txt", 'r') as Alice_data:
     Alice_Winnow_string = Alice_data.read()
     Alice_data.close()
 

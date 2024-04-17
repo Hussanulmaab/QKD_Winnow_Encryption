@@ -16,6 +16,6 @@ def read_binary_file(file_name):
         return binary_string
 
 # Example usage:
-file_name = 'transmitter_key.bin'
+file_name = 'receiver_sift.bin'
 binary_data = read_binary_file(file_name)
 print(binary_data)
