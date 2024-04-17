@@ -1,9 +1,9 @@
 import numpy as np
 
-f = open("Alice_Permuted_2.txt", "r")
+f = open("Alice_Permuted_3.txt", "r")
 data = f.read()
 
-with open("Alice_Winnow-2-Encrypted_File.txt", "w") as Alice_Encrypted:
+with open("Alice_Winnow-3-Encrypted_File.txt", "w") as Alice_Encrypted:
     print("Alice Encryption created")
 Alice_Encrypted.close()
 
@@ -44,7 +44,7 @@ def Syndrome_Calculation():
     elif (parity_check % 2) == 1:
         Synd_Vector += str(1)
 
-    with open("Alice_Winnow-2-Encrypted_File.txt", "a") as Alice_Encrypted:
+    with open("Alice_Winnow-3-Encrypted_File.txt", "a") as Alice_Encrypted:
 
         for row in range(len(H3_Syndrome_Cal_Matrix)):
             temp = 0
