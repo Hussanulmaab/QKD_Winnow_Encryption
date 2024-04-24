@@ -32,7 +32,7 @@ for i in range(0, int(len(Alice_Bits))):
         check_Error_String = check_Error_String + "x"
         Error_Bits += 1
 
-print("Error Bits     : " + check_Error_String[:1000])
+print("Error Bits   : " + check_Error_String[:1000])
 print("Number of Error Bits are " + str(Error_Bits) + " out of " + str(len(Alice_Bits)))
 
 Error_Percentage = (Error_Bits/int(len(Alice_Bits))) * 100
@@ -49,7 +49,7 @@ with open("../Winnow Encryption Main Algorithm/Bob_Winnow-1_Final.txt", 'r') as 
 
 print("\n-------------------------------------------After WINNOW ENCRYPTION -----------------------------------------\n")
 
-print("Alice Bits are : " + Alice_Bits[:1000])
+print("Ali Bits are : " + Alice_Bits[:1000])
 print("Bob Bits are : " + Bob_Bits[:1000])
 check_Error_String = ""
 Error_Bits = 0
@@ -61,7 +61,7 @@ for i in range(0, int(len(Alice_Bits))):
         check_Error_String = check_Error_String + "x"
         Error_Bits += 1
 
-print("Error Bits     : " + check_Error_String[:1000])
+print("Error Bits   : " + check_Error_String[:1000])
 print("Number of Error Bits are " + str(Error_Bits) + " out of " + str(len(Alice_Bits)))
 
 Error_Percentage = (Error_Bits/int(len(Alice_Bits))) * 100
