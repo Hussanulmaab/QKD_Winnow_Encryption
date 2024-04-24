@@ -9,8 +9,7 @@ Alice_Encrypted.close()
 
 global x_bits
 
-
-def main():
+def Alice_Encrypting_Function():
     for i in range(int(len(data) / 7)):
         block = ""
         for j in range(0, 7):
@@ -63,4 +62,4 @@ def Syndrome_Calculation():
     Alice_Encrypted.close()
 
 
-main()
+Alice_Encrypting_Function()

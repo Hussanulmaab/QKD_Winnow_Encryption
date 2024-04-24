@@ -9,8 +9,7 @@ Bob_Encrypted.close()
 
 global x_bits
 
-
-def main():
+def Bob_Encrypting_Function():
     for i in range(int(len(data) / 7)):
         block = ""
         for j in range(0, 7):
@@ -63,4 +62,4 @@ def Syndrome_Calculation():
     Bob_Encrypted.close()
 
 
-main()
+Bob_Encrypting_Function()
