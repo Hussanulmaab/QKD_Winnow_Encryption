@@ -83,10 +83,10 @@ for k in range(2, int(n)+1):
     print("-----------------------------------------------ROUND " + str(k) + "----------------------------------------------------")
     print("----------------------------------------------------------------------------------------------------------")
 
-    with open("../New PseudoRandom Approach/Winnow_Round_" + str(k) + "/Transmitter_Permuted_" + str(k) + ".txt", 'r') as Transmitter_Sifted_bits:
+    with open("../Permutatiion_Winnow/Winnow_Round_" + str(k) + "/Transmitter_Permuted_" + str(k) + ".txt", 'r') as Transmitter_Sifted_bits:
         Transmitter_Bits = Transmitter_Sifted_bits.read()
 
-    with open("../New PseudoRandom Approach/Winnow_Round_" + str(k) + "/Receiver_Permuted_" + str(k) + ".txt", 'r') as Receiver_Sifted_bits:
+    with open("../Permutatiion_Winnow/Winnow_Round_" + str(k) + "/Receiver_Permuted_" + str(k) + ".txt", 'r') as Receiver_Sifted_bits:
         Receiver_Bits = Receiver_Sifted_bits.read()
 
     # Before Winnow Encryption
@@ -118,10 +118,10 @@ for k in range(2, int(n)+1):
 
     # After Winnow Encryption
 
-    with open("../New PseudoRandom Approach/Winnow_Round_" + str(k) + "/Transmitter_Winnow-" + str(k) + "_Final.txt", 'r') as Transmitter_Sifted_bits:
+    with open("../Permutatiion_Winnow/Winnow_Round_" + str(k) + "/Transmitter_Winnow-" + str(k) + "_Final.txt", 'r') as Transmitter_Sifted_bits:
         Transmitter_Bits = Transmitter_Sifted_bits.read()
 
-    with open("../New PseudoRandom Approach/Winnow_Round_" + str(k) + "/Receiver_Winnow-" + str(k) + "_Final.txt", 'r') as Receiver_Sifted_bits:
+    with open("../Permutatiion_Winnow/Winnow_Round_" + str(k) + "/Receiver_Winnow-" + str(k) + "_Final.txt", 'r') as Receiver_Sifted_bits:
         Receiver_Bits = Receiver_Sifted_bits.read()
 
     print("\n-------------------------------------------After WINNOW ENCRYPTION -----------------------------------------\n")
