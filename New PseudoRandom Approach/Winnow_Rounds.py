@@ -5,7 +5,7 @@ import os
 import pickle
 import shutil
 
-# -----------------------------Deleting Previous Data---------------------
+#-----------------------------Deleting Previous Useless Data Directries---------------------
 
 for Dir in os.listdir('./'):
     Dir_Path = os.path.join('./', Dir)
@@ -17,67 +17,68 @@ for Dir in os.listdir('./'):
 
 n = input("Enter the No. of times to apply Winnow : ")
 
-for i in range(2, int(n)+1):
+for i in range(2, int(n) + 1):
 
-    #-----------------------------Making New directry for separate rounds data ---------------------
+    # -----------------------------Making New directry for separate rounds data ---------------------
 
     if os.path.exists("./Winnow_Round_" + str(i)):
         print("Directory " + str(i) + "already exists")
-    else :
+    else:
         os.mkdir("Winnow_Round_" + str(i))
 
+    # -----------------------------Permuting--------------------------------------
 
+    # Read data from Transmitter and Receiver Final files from previous rounds files for Permuting
 
-    #-----------------------------Permuting--------------------------------------
+    print("-------------------------------Permuting--------------------------------")
+    if i == 2:
+        with open("../Winnow Encryption Main Algorithm/Transmitter_Winnow-1_Final.txt", "r") as Transmitter_file:
+            Transmitter_data = np.array([int(bit) for bit in Transmitter_file.read().strip()])
 
-    # Read data from Alice and Bob Final files from previous rounds files for Permuting
-    if i==2:
-        with open("../Winnow Encryption Main Algorithm/Alice_Winnow-1_Final.txt", "r") as alice_file:
-            alice_data = np.array([int(bit) for bit in alice_file.read().strip()])
-
-        with open("../Winnow Encryption Main Algorithm/Bob_Winnow-1_Final.txt", "r") as bob_file:
-            bob_data = np.array([int(bit) for bit in bob_file.read().strip()])
+        with open("../Winnow Encryption Main Algorithm/Receiver_Winnow-1_Final.txt", "r") as Receiver_file:
+            Receiver_data = np.array([int(bit) for bit in Receiver_file.read().strip()])
 
     elif i > 2:
-        with open("./Winnow_Round_" + str(i-1) + "/Alice_Winnow-" + str(i-1) + "_Final.txt", "r") as alice_file:
-            alice_data = np.array([int(bit) for bit in alice_file.read().strip()])
+        with open("./Winnow_Round_" + str(i - 1) + "/Transmitter_Winnow-" + str(i - 1) + "_Final.txt", "r") as Transmitter_file:
+            Transmitter_data = np.array([int(bit) for bit in Transmitter_file.read().strip()])
 
-        with open("./Winnow_Round_" + str(i-1) + "/Bob_Winnow-" + str(i-1) + "_Final.txt", "r") as bob_file:
-            bob_data = np.array([int(bit) for bit in bob_file.read().strip()])
+        with open("./Winnow_Round_" + str(i - 1) + "/Receiver_Winnow-" + str(i - 1) + "_Final.txt", "r") as Receiver_file:
+            Receiver_data = np.array([int(bit) for bit in Receiver_file.read().strip()])
 
     # Generate a permutation
-    permutation = np.random.permutation(len(alice_data))
+    permutation = np.random.permutation(len(Transmitter_data))
 
-    # Apply permutation to Alice's data
-    alice_permuted = alice_data[permutation]
+    # Apply permutation to Transmitter's data
+    Transmitter_permuted = Transmitter_data[permutation]
 
-    # Apply the same permutation to Bob's data
-    bob_permuted = bob_data[permutation]
+    # Apply the same permutation to Receiver's data
+    Receiver_permuted = Receiver_data[permutation]
 
     # Save permuted data to new files
-    with open("./Winnow_Round_" + str(i) + "/Alice_Permuted_" + str(i) + ".txt", "w") as alice_permuted_file:
-        alice_permuted_file.write("".join(map(str, alice_permuted)))
+    with open("./Winnow_Round_" + str(i) + "/Transmitter_Permuted_" + str(i) + ".txt", "w") as Transmitter_permuted_file:
+        Transmitter_permuted_file.write("".join(map(str, Transmitter_permuted)))
 
-    with open("./Winnow_Round_" + str(i) + "/Bob_Permuted_" + str(i) + ".txt", "w") as bob_permuted_file:
-        bob_permuted_file.write("".join(map(str, bob_permuted)))
+    with open("./Winnow_Round_" + str(i) + "/Receiver_Permuted_" + str(i) + ".txt", "w") as Receiver_permuted_file:
+        Receiver_permuted_file.write("".join(map(str, Receiver_permuted)))
 
-    print("Permuted Round " + str(i) + " Files Alice_Permuted and Bob_Permuted saved successfully.")
-    #---------------------------------------Permutation End-----------------------\
+    print("Permuted Round " + str(i) + " Files Transmitter_Permuted and Receiver_Permuted saved successfully.")
 
+    # ---------------------------------------Permutation End-----------------------\
 
+    # ----------------------------------------Transmitter Encryption of Round i----------------------------------------
 
-    #----------------------------------------Alice Encryption of Round i----------------------------------------
-
-    f = open("./Winnow_Round_" + str(i) + "/Alice_Permuted_" + str(i) + ".txt", "r")
+    print("-------------------------------Transmitter Encryption--------------------------------")
+    f = open("./Winnow_Round_" + str(i) + "/Transmitter_Permuted_" + str(i) + ".txt", "r")
     data = f.read()
 
-    with open("./Winnow_Round_" + str(i) + "/Alice_Winnow-" + str(i) + "-Encrypted_File.txt", "w") as Alice_Encrypted:
-        print("Alice Encryption " + str(i) + " created")
-    Alice_Encrypted.close()
+    with open("./Winnow_Round_" + str(i) + "/Transmitter_Winnow-" + str(i) + "-Encrypted_File.txt", "w") as Transmitter_Encrypted:
+        print("\nTransmitter Encryption " + str(i) + " created")
+    Transmitter_Encrypted.close()
 
     global x_bits
 
-    def Alice_Encrypting_Function():
+
+    def Transmitter_Encrypting_Function():
         for i in range(int(len(data) / 7)):
             block = ""
             for j in range(0, 7):
@@ -111,7 +112,8 @@ for i in range(2, int(n)+1):
         elif (parity_check % 2) == 1:
             Synd_Vector += str(1)
 
-        with open("./Winnow_Round_" + str(i) + "/Alice_Winnow-" + str(i) + "-Encrypted_File.txt", "a") as Alice_Encrypted:
+        with open("./Winnow_Round_" + str(i) + "/Transmitter_Winnow-" + str(i) + "-Encrypted_File.txt",
+                  "a") as Transmitter_Encrypted:
 
             for row in range(len(H3_Syndrome_Cal_Matrix)):
                 temp = 0
@@ -123,30 +125,31 @@ for i in range(2, int(n)+1):
             temp_Synd_Vector = temp_Synd_Vector[::-1]
             Synd_Vector += temp_Synd_Vector
 
-            Alice_Encrypted.write(Synd_Vector)
+            Transmitter_Encrypted.write(Synd_Vector)
 
             print("Syndrome -- " + Synd_Vector)
 
-        Alice_Encrypted.close()
-
-    Alice_Encrypting_Function()
-
-    #----------------------------------------Alice Encryption End of Round i----------------------------------------
+        Transmitter_Encrypted.close()
 
 
+    Transmitter_Encrypting_Function()
 
-    # ----------------------------------------Bob Encryption of Round i----------------------------------------
+    # ----------------------------------------Transmitter Encryption End of Round i----------------------------------------
 
-    f = open("./Winnow_Round_" + str(i) + "/Bob_Permuted_" + str(i) + ".txt", "r")
+    # ----------------------------------------Receiver Encryption of Round i----------------------------------------
+    print("-------------------------------Receiver Encryption--------------------------------")
+
+    f = open("./Winnow_Round_" + str(i) + "/Receiver_Permuted_" + str(i) + ".txt", "r")
     data = f.read()
 
-    with open("./Winnow_Round_" + str(i) + "/Bob_Winnow-" + str(i) + "-Encrypted_File.txt", "w") as Bob_Encrypted:
-        print("Bob Encryption " + str(i) + " created")
-    Bob_Encrypted.close()
+    with open("./Winnow_Round_" + str(i) + "/Receiver_Winnow-" + str(i) + "-Encrypted_File.txt", "w") as Receiver_Encrypted:
+        print("\nReceiver Encryption " + str(i) + " created")
+    Receiver_Encrypted.close()
 
     global x_bits
 
-    def Bob_Encrypting_Function():
+
+    def Receiver_Encrypting_Function():
         for i in range(int(len(data) / 7)):
             block = ""
             for j in range(0, 7):
@@ -180,8 +183,8 @@ for i in range(2, int(n)+1):
         elif (parity_check % 2) == 1:
             Synd_Vector += str(1)
 
-        with open("./Winnow_Round_" + str(i) + "/Bob_Winnow-" + str(i) + "-Encrypted_File.txt",
-                  "a") as Bob_Encrypted:
+        with open("./Winnow_Round_" + str(i) + "/Receiver_Winnow-" + str(i) + "-Encrypted_File.txt",
+                  "a") as Receiver_Encrypted:
 
             for row in range(len(H3_Syndrome_Cal_Matrix)):
                 temp = 0
@@ -193,72 +196,71 @@ for i in range(2, int(n)+1):
             temp_Synd_Vector = temp_Synd_Vector[::-1]
             Synd_Vector += temp_Synd_Vector
 
-            Bob_Encrypted.write(Synd_Vector)
+            Receiver_Encrypted.write(Synd_Vector)
 
             print("Syndrome -- " + Synd_Vector)
 
-        Bob_Encrypted.close()
+        Receiver_Encrypted.close()
 
 
-    Bob_Encrypting_Function()
+    Receiver_Encrypting_Function()
 
-    # ----------------------------------------Bob Encryption End of Round i----------------------------------------
+    # ----------------------------------------Receiver Encryption End of Round i----------------------------------------
 
+    # --------------------------------------------Receiver Decryption of Round i---------------------------------
+    print("-------------------------------Receiver Decryption--------------------------------")
 
+    with open("./Winnow_Round_" + str(i) + "/Receiver_Winnow-" + str(i) + "-Encrypted_File.txt", 'r') as Receiver_Encrypted:
+        Receiver_Encrypted_Var = Receiver_Encrypted.read()
 
-    #--------------------------------------------Bob Decryption of Round i---------------------------------
+    with open("./Winnow_Round_" + str(i) + "/Transmitter_Winnow-" + str(i) + "-Encrypted_File.txt", 'r') as Transmitter_Encrypted:
+        Transmitter_Encrypted_Var = Transmitter_Encrypted.read()
 
-    with open("./Winnow_Round_" + str(i) + "/Bob_Winnow-" + str(i) + "-Encrypted_File.txt", 'r') as Bob_Encrypted:
-        Bob_Encrypted_Var = Bob_Encrypted.read()
-
-    with open("./Winnow_Round_" + str(i) + "/Alice_Winnow-" + str(i) + "-Encrypted_File.txt", 'r') as Alice_Encrypted:
-        Alice_Encrypted_Var = Alice_Encrypted.read()
-
-    # with open("Bob_Sifted_File.txt", 'r') as Bob_Sifted:
-    #     Bob_Sifted_Var = Bob_Sifted.read()
+    # with open("Receiver_Sifted_File.txt", 'r') as Receiver_Sifted:
+    #     Receiver_Sifted_Var = Receiver_Sifted.read()
     #
-    # with open("Alice_Sifted_File.txt", 'r') as Alice_Sifted:
-    #     Alice_Sifted_Var = Alice_Sifted.read()
+    # with open("Transmitter_Sifted_File.txt", 'r') as Transmitter_Sifted:
+    #     Transmitter_Sifted_Var = Transmitter_Sifted.read()
 
-    with open("./Winnow_Round_" + str(i) + "/Alice_Permuted_" + str(i) + ".txt", 'r') as Bob_Sifted:
-        Bob_Sifted_Var = Bob_Sifted.read()
+    with open("./Winnow_Round_" + str(i) + "/Receiver_Permuted_" + str(i) + ".txt", 'r') as Receiver_Sifted:
+        Receiver_Sifted_Var = Receiver_Sifted.read()
 
-    with open("./Winnow_Round_" + str(i) + "/Bob_Permuted_" + str(i) + ".txt", 'r') as Alice_Sifted:
-        Alice_Sifted_Var = Alice_Sifted.read()
+    with open("./Winnow_Round_" + str(i) + "/Transmitter_Permuted_" + str(i) + ".txt", 'r') as Transmitter_Sifted:
+        Transmitter_Sifted_Var = Transmitter_Sifted.read()
 
-    print("Ali 1 : " + Alice_Sifted_Var)
-    print("Bob 1 : " + Bob_Sifted_Var)
-    Corrected_Bob_Sifted_Var = ""
+    print("Tx " + str(i) + " : " + Transmitter_Sifted_Var)
+    print("Rx " + str(i) + " : " + Receiver_Sifted_Var)
+    Corrected_Receiver_Sifted_Var = ""
 
     counter = -1
-    Alice_Removal_Blocks = []
-    for j in range(0, int(len(Alice_Encrypted_Var) / 4)):
+    Transmitter_Removal_Blocks = []
+    for j in range(0, int(len(Transmitter_Encrypted_Var) / 4)):
         counter += 1
-        Alice_Syndrome = ""
-        Bob_Syndrome = ""
+        Transmitter_Syndrome = ""
+        Receiver_Syndrome = ""
         for k in range(0, 4):
-            Alice_Syndrome = Alice_Syndrome + Alice_Encrypted_Var[4 * j + k]
-            Bob_Syndrome = Bob_Syndrome + Bob_Encrypted_Var[4 * j + k]
+            Transmitter_Syndrome = Transmitter_Syndrome + Transmitter_Encrypted_Var[4 * j + k]
+            Receiver_Syndrome = Receiver_Syndrome + Receiver_Encrypted_Var[4 * j + k]
 
-        resultant_syndrome = str((int(Alice_Syndrome[0]) + int(Bob_Syndrome[0])) % 2) + str(
-            (int(Alice_Syndrome[1]) + int(Bob_Syndrome[1])) % 2) + str(
-            (int(Alice_Syndrome[2]) + int(Bob_Syndrome[2])) % 2) + str(
-            (int(Alice_Syndrome[3]) + int(Bob_Syndrome[3])) % 2)
+        resultant_syndrome = str((int(Transmitter_Syndrome[0]) + int(Receiver_Syndrome[0])) % 2) + str(
+            (int(Transmitter_Syndrome[1]) + int(Receiver_Syndrome[1])) % 2) + str(
+            (int(Transmitter_Syndrome[2]) + int(Receiver_Syndrome[2])) % 2) + str(
+            (int(Transmitter_Syndrome[3]) + int(Receiver_Syndrome[3])) % 2)
 
         temp = ""
         for l in range(0, 7):
-            temp = temp + Bob_Sifted_Var[(7 * j) + l]
+            temp = temp + Receiver_Sifted_Var[(7 * j) + l]
 
         new_Temp = ""
 
         if resultant_syndrome[0] == "0":
             new_Temp = temp
-            Corrected_Bob_Sifted_Var = Corrected_Bob_Sifted_Var + new_Temp
+            Corrected_Receiver_Sifted_Var = Corrected_Receiver_Sifted_Var + new_Temp
         else:
-            # Correcting the error and updating Bobs bits
+            # Correcting the error and updating Receivers bits
             if resultant_syndrome == "1000":
                 new_Temp = temp
-                Corrected_Bob_Sifted_Var = Corrected_Bob_Sifted_Var + new_Temp
+                Corrected_Receiver_Sifted_Var = Corrected_Receiver_Sifted_Var + new_Temp
                 continue
             elif resultant_syndrome == "1001":
                 if temp[0] == "0":
@@ -304,51 +306,50 @@ for i in range(2, int(n)+1):
 
             # Removing the bits in the power of 2 (according to paper) so that no information is leaked
             after_Removal_bits = new_Temp[2:3] + new_Temp[3 + 1:]
-            Corrected_Bob_Sifted_Var = Corrected_Bob_Sifted_Var + after_Removal_bits
+            Corrected_Receiver_Sifted_Var = Corrected_Receiver_Sifted_Var + after_Removal_bits
 
-            # saving the values of those blocks in which Bob has removed the information leaking bits and now Alice will
+            # saving the values of those blocks in which Receiver has removed the information leaking bits and now Transmitter will
             # also remove
-            Alice_Removal_Blocks.append(counter)
+            Transmitter_Removal_Blocks.append(counter)
 
     # Out of loop
-    print("Bob 2 : " + Corrected_Bob_Sifted_Var)
-    print("List : " + str(Alice_Removal_Blocks))
+    print("Receiver 2 : " + Corrected_Receiver_Sifted_Var)
+    print("List : " + str(Transmitter_Removal_Blocks))
 
-    with open("./Winnow_Round_" + str(i) + "/Bob_Winnow-" + str(i) + "_Final.txt", "w") as Final_Bob_Bits:
-        Final_Bob_Bits.write(Corrected_Bob_Sifted_Var)
+    with open("./Winnow_Round_" + str(i) + "/Receiver_Winnow-" + str(i) + "_Final.txt", "w") as Final_Receiver_Bits:
+        Final_Receiver_Bits.write(Corrected_Receiver_Sifted_Var)
 
     with open("./Winnow_Round_" + str(i) + "/Removal_Block_file_" + str(i) + ".txt", 'wb') as Removal_bits:
-        pickle.dump(Alice_Removal_Blocks, Removal_bits)
+        pickle.dump(Transmitter_Removal_Blocks, Removal_bits)
 
     # closing files
-    Final_Bob_Bits.close()
-    Bob_Encrypted.close()
-    Alice_Encrypted.close()
-    Bob_Sifted.close()
-    Alice_Sifted.close()
+    Final_Receiver_Bits.close()
+    Receiver_Encrypted.close()
+    Transmitter_Encrypted.close()
+    Receiver_Sifted.close()
+    Transmitter_Sifted.close()
     Removal_bits.close()
 
-    #---------------------------------------------------Bob Decryption end of Round i----------------------------------
+    # ---------------------------------------------------Receiver Decryption end of Round i----------------------------------
 
-
-
-    #---------------------------------------------------Alice Decryption of Round i----------------------------------
+    # ---------------------------------------------------Transmitter Decryption of Round i----------------------------------
+    print("-------------------------------Transmitter Decryption--------------------------------")
 
     with open("./Winnow_Round_" + str(i) + "/Removal_Block_file_" + str(i) + ".txt", 'rb') as Removal_bits:
-        Alice_Removal_Blocks = pickle.load(Removal_bits)
+        Transmitter_Removal_Blocks = pickle.load(Removal_bits)
         Removal_bits.close()
 
-    # with open("Alice_Sifted_File.txt", 'r') as Alice_Sifted:
-    #     Unchanged_data = Alice_Sifted.read()
-    #     Alice_Sifted.close()
+    # with open("Transmitter_Sifted_File.txt", 'r') as Transmitter_Sifted:
+    #     Unchanged_data = Transmitter_Sifted.read()
+    #     Transmitter_Sifted.close()
 
-    with open("./Winnow_Round_" + str(i) + "/Alice_Permuted_" + str(i) + ".txt", 'r') as Alice_Sifted:
-        Unchanged_data = Alice_Sifted.read()
-        Alice_Sifted.close()
+    with open("./Winnow_Round_" + str(i) + "/Transmitter_Permuted_" + str(i) + ".txt", 'r') as Transmitter_Sifted:
+        Unchanged_data = Transmitter_Sifted.read()
+        Transmitter_Sifted.close()
 
     print("Before : " + Unchanged_data)
 
-    Corrected_Alice_Bits = ""
+    Corrected_Transmitter_Bits = ""
     counter = 0
     list_counter = 0
 
@@ -358,27 +359,24 @@ for i in range(2, int(n)+1):
         for l in range(0, 7):
             temp = temp + Unchanged_data[(7 * j) + l]
 
-        if list_counter < len(Alice_Removal_Blocks):
-            if Alice_Removal_Blocks[list_counter] == counter:
+        if list_counter < len(Transmitter_Removal_Blocks):
+            if Transmitter_Removal_Blocks[list_counter] == counter:
                 after_Removal_bits = temp[2:3] + temp[3 + 1:]
-                Corrected_Alice_Bits = Corrected_Alice_Bits + after_Removal_bits
+                Corrected_Transmitter_Bits = Corrected_Transmitter_Bits + after_Removal_bits
                 list_counter += 1
-            elif Alice_Removal_Blocks[list_counter] != counter:
-                Corrected_Alice_Bits = Corrected_Alice_Bits + temp
+            elif Transmitter_Removal_Blocks[list_counter] != counter:
+                Corrected_Transmitter_Bits = Corrected_Transmitter_Bits + temp
         else:
-            Corrected_Alice_Bits = Corrected_Alice_Bits + temp
+            Corrected_Transmitter_Bits = Corrected_Transmitter_Bits + temp
 
         counter += 1
 
-    print("After  : " + Corrected_Alice_Bits)
-    print("Removed Alice bits and Created the file 'NAMED = Alice_Winnow-" + str(i) + "_Final.txt'")
+    print("After  : " + Corrected_Transmitter_Bits)
+    print("Removed Transmitter bits and Created the file 'NAMED = Transmitter_Winnow-" + str(i) + "_Final.txt'")
 
-    with open("./Winnow_Round_" + str(i) + "/Alice_Winnow-" + str(i) + "_Final.txt", "w") as Final_Alice_Bits:
-        Final_Alice_Bits.write(Corrected_Alice_Bits)
+    with open("./Winnow_Round_" + str(i) + "/Transmitter_Winnow-" + str(i) + "_Final.txt", "w") as Final_Transmitter_Bits:
+        Final_Transmitter_Bits.write(Corrected_Transmitter_Bits)
 
-    Final_Alice_Bits.close()
+    Final_Transmitter_Bits.close()
 
-
-    #---------------------------------------------------Alice Decryption End of Round i----------------------------------
-
-
+    # ---------------------------------------------------Transmitter Decryption End of Round i----------------------------------

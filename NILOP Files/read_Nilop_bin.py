@@ -15,7 +15,19 @@ def read_binary_file(file_name):
 
         return binary_string
 
-# Example usage:
-file_name = 'receiver_sift.bin'
+# Alice read
+file_name = './receiver_sift.bin'
 binary_data = read_binary_file(file_name)
+
+with open('../Algorithm Check/Making Erreneous Files/Transmitter_Sifted.txt', 'w') as Alice_Sifted:
+    Alice_Sifted.write(binary_data)
+    Alice_Sifted.close()
+
 print(binary_data)
+
+# Bob read
+file_name = './transmitter_sift.bin'
+binary_data = read_binary_file(file_name)
+with open('../Algorithm Check/Making Erreneous Files/Receiver_Sifted.txt', 'w') as Bob_Sifted:
+    Bob_Sifted.write(binary_data)
+    Bob_Sifted.close()

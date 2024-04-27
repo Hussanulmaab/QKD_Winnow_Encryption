@@ -1,32 +1,29 @@
 import random
 
-def induce_errors(bits, error_percentage):
-    """Induce errors in the bits based on the error percentage."""
-    num_errors = int(len(bits) * error_percentage / 100)
-    error_indices = random.sample(range(len(bits)), num_errors)
-    new_bits = list(bits)
-    for index in error_indices:
-        new_bits[index] = '0' if new_bits[index] == '1' else '1'
-    return ''.join(new_bits)
+def induce_errors(bits, error_rate):
+    """Induce errors in the bit string based on error rate."""
+    num_errors = int(len(bits) * error_rate)
+    indices_to_flip = random.sample(range(len(bits)), num_errors)
+    modified_bits = list(bits)
+    for index in indices_to_flip:
+        modified_bits[index] = '0' if modified_bits[index] == '1' else '1'
+    return ''.join(modified_bits)
 
 def main():
     try:
-        num_bits = int(input("Enter the number of bits: "))
-        if num_bits <= 0:
-            print("Please enter a positive integer.")
+        error_rate_percentage = float(input("Enter the error rate percentage (between 0 and 100): "))
+        if not 0 <= error_rate_percentage <= 100:
+            print("Error rate percentage must be between 0 and 100.")
             return
-        error_percentage = float(input("Enter the percentage of errors: "))
-        if error_percentage < 0 or error_percentage > 100:
-            print("Please enter a percentage between 0 and 100.")
-            return
-        with open('My_Alice_Sifted.txt', 'r') as file:
-            bits = file.read().strip()
-        error_bits = induce_errors(bits, error_percentage)
-        with open('My_Bob_Sifted.txt', 'w') as error_file:
-            error_file.write(error_bits)
-        print(f"File 'My_Bob_Sifted.txt' created with induced errors ({error_percentage}%).")
+        error_rate = error_rate_percentage / 100  # Convert percentage to decimal
+        with open('Transmitter_Sifted.txt', 'r') as alice_file:
+            alice_bits = alice_file.read().strip()
+        bob_bits = induce_errors(alice_bits, error_rate)
+        with open('Receiver_Sifted.txt', 'w') as bob_file:
+            bob_file.write(bob_bits)
+        print(f"File 'Receiver_Sifted.txt' created with induced errors based on {error_rate_percentage}% error rate.")
     except ValueError:
-        print("Please enter valid inputs.")
+        print("Please enter a valid error rate.")
 
 if __name__ == "__main__":
     main()
