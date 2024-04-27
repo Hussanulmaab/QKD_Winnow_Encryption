@@ -8,7 +8,7 @@ with open("Removal_Block_file_1.txt", 'rb') as Removal_bits:
 #     Unchanged_data = Alice_Sifted.read()
 #     Alice_Sifted.close()
 
-with open("../Performance Check/Making Erreneous Files/Transmitter_Sifted.txt", 'r') as Alice_Sifted:
+with open("../Performance Check/Transmitter_Sifted.txt", 'r') as Alice_Sifted:
     Unchanged_data = Alice_Sifted.read()
     Alice_Sifted.close()
 

@@ -15,19 +15,19 @@ def read_binary_file(file_name):
 
         return binary_string
 
-# Alice read
-file_name = './receiver_sift.bin'
+# Transmitter read
+file_name = 'receiver_sift.bin'
 binary_data = read_binary_file(file_name)
 
-with open('../Performance Check/Making Erreneous Files/Transmitter_Sifted.txt', 'w') as Alice_Sifted:
-    Alice_Sifted.write(binary_data)
-    Alice_Sifted.close()
+with open('../../Transmitter_Sifted.txt', 'w') as Transmitter_Sifted:
+    Transmitter_Sifted.write(binary_data)
+    Transmitter_Sifted.close()
 
 print(binary_data)
 
-# Bob read
-file_name = './transmitter_sift.bin'
+# Receiver read
+file_name = 'transmitter_sift.bin'
 binary_data = read_binary_file(file_name)
-with open('../Performance Check/Making Erreneous Files/Receiver_Sifted.txt', 'w') as Bob_Sifted:
-    Bob_Sifted.write(binary_data)
-    Bob_Sifted.close()
+with open('../../Receiver_Sifted.txt', 'w') as Receiver_Sifted:
+    Receiver_Sifted.write(binary_data)
+    Receiver_Sifted.close()

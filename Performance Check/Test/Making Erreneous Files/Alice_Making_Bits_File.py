@@ -11,7 +11,7 @@ def main():
             print("Please enter a positive integer.")
             return
         bits = generate_bits(num_bits)
-        with open('Transmitter_Sifted.txt', 'w') as file:
+        with open('../../Transmitter_Sifted.txt', 'w') as file:
             file.write(bits)
         print(f"File 'Transmitter_Sifted.txt' created with {num_bits} random bits.")
     except ValueError:

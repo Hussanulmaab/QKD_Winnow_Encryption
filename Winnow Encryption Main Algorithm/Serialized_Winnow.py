@@ -1,7 +1,7 @@
 # ----------------------------------------Transmitter Encryption Start----------------------------------------
 import pickle
 
-f = open("../Performance Check/Making Erreneous Files/Transmitter_Sifted.txt", "r")
+f = open("../Performance Check/Transmitter_Sifted.txt", "r")
 data = f.read()
 
 with open("Transmitter_Winnow-1-Encrypted_File.txt", "w") as Transmitter_Encrypted:
@@ -70,7 +70,7 @@ main()
 
 # ----------------------------------------Receiver Encryption Start----------------------------------------
 
-f = open("../Performance Check/Making Erreneous Files/Receiver_Sifted.txt", "r")
+f = open("../Performance Check/Receiver_Sifted.txt", "r")
 data = f.read()
 
 with open("Receiver_Winnow-1-Encrypted_File.txt", "w") as Receiver_Encrypted:
@@ -150,10 +150,10 @@ with open("Transmitter_Winnow-1-Encrypted_File.txt", 'r') as Transmitter_Encrypt
 # with open("Transmitter_Sifted_File.txt", 'r') as Transmitter_Sifted:
 #     Transmitter_Sifted_Var = Transmitter_Sifted.read()
 
-with open("../Performance Check/Making Erreneous Files/Receiver_Sifted.txt", 'r') as Receiver_Sifted:
+with open("../Performance Check/Receiver_Sifted.txt", 'r') as Receiver_Sifted:
     Receiver_Sifted_Var = Receiver_Sifted.read()
 
-with open("../Performance Check/Making Erreneous Files/Transmitter_Sifted.txt", 'r') as Transmitter_Sifted:
+with open("../Performance Check/Transmitter_Sifted.txt", 'r') as Transmitter_Sifted:
     Transmitter_Sifted_Var = Transmitter_Sifted.read()
 
 print("Tx 1 : " + Transmitter_Sifted_Var)
@@ -269,7 +269,7 @@ with open("Removal_Block_file_1.txt", 'rb') as Removal_bits:
 #     Unchanged_data = Transmitter_Sifted.read()
 #     Transmitter_Sifted.close()
 
-with open("../Performance Check/Making Erreneous Files/Transmitter_Sifted.txt", 'r') as Transmitter_Sifted:
+with open("../Performance Check/Transmitter_Sifted.txt", 'r') as Transmitter_Sifted:
     Unchanged_data = Transmitter_Sifted.read()
     Transmitter_Sifted.close()
 

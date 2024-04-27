@@ -1,6 +1,6 @@
 import numpy as np
 
-f = open("../Performance Check/Making Erreneous Files/Transmitter_Sifted.txt", "r")
+f = open("../Performance Check/Transmitter_Sifted.txt", "r")
 data = f.read()
 
 with open("Alice_Winnow-1-Encrypted_File.txt", "w") as Alice_Encrypted:

@@ -1,6 +1,6 @@
 import numpy as np
 
-f = open("../Performance Check/Making Erreneous Files/Receiver_Sifted.txt", "r")
+f = open("../Performance Check/Receiver_Sifted.txt", "r")
 data = f.read()
 
 with open("Bob_Winnow-1-Encrypted_File.txt", "w") as Bob_Encrypted:

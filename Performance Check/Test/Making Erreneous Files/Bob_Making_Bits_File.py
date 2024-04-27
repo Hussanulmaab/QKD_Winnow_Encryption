@@ -16,10 +16,10 @@ def main():
             print("Error rate percentage must be between 0 and 100.")
             return
         error_rate = error_rate_percentage / 100  # Convert percentage to decimal
-        with open('Transmitter_Sifted.txt', 'r') as alice_file:
+        with open('../../Transmitter_Sifted.txt', 'r') as alice_file:
             alice_bits = alice_file.read().strip()
         bob_bits = induce_errors(alice_bits, error_rate)
-        with open('Receiver_Sifted.txt', 'w') as bob_file:
+        with open('../../Receiver_Sifted.txt', 'w') as bob_file:
             bob_file.write(bob_bits)
         print(f"File 'Receiver_Sifted.txt' created with induced errors based on {error_rate_percentage}% error rate.")
     except ValueError:
