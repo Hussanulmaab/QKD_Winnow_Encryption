@@ -12,10 +12,10 @@ with open("Alice_Winnow-1-Encrypted_File.txt", 'r') as Alice_Encrypted:
 # with open("Alice_Sifted_File.txt", 'r') as Alice_Sifted:
 #     Alice_Sifted_Var = Alice_Sifted.read()
 
-with open("../Algorithm Check/Making Erreneous Files/Receiver_Sifted.txt", 'r') as Bob_Sifted:
+with open("../Performance Check/Making Erreneous Files/Receiver_Sifted.txt", 'r') as Bob_Sifted:
     Bob_Sifted_Var = Bob_Sifted.read()
 
-with open("../Algorithm Check/Making Erreneous Files/Transmitter_Sifted.txt", 'r') as Alice_Sifted:
+with open("../Performance Check/Making Erreneous Files/Transmitter_Sifted.txt", 'r') as Alice_Sifted:
     Alice_Sifted_Var = Alice_Sifted.read()
 
 print("Ali 1 : " + Alice_Sifted_Var)
