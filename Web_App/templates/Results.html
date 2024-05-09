@@ -8,14 +8,17 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #f0f0f0;  /* Light grey background */
             margin: 0;
-            padding: 20px;
+            display: flex; /* Center content vertically */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Stretch full viewport */
         }
 
         .container {
             max-width: 800px;
-            margin: 0 auto;
+            text-align: center;  /* Center text within container */
             background-color: #ffffff;
             padding: 30px;
             border-radius: 10px;
@@ -23,7 +26,6 @@
         }
 
         h1 {
-            text-align: center;
             margin-bottom: 40px;
             color: #333333;
         }
@@ -48,8 +50,15 @@
             margin-left: 20px;
             color: #009688;
         }
+
         a {
             text-decoration: none;
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
         }
     </style>
 </head>
@@ -59,12 +68,11 @@
         <h1>Results</h1>
         <div class="result">
             <label>Transmitter Final</label>
-            <a href="../" download="Final_Transmitter.txt">Final_Transmitter.txt</a>
         </div>
         <div class="result">
             <label>Receiver Final</label>
-            <a href="../" download="Final_Receiver.txt">Final_Receiver.txt</a>
         </div>
+        <a href="/download">Download Final Files</a>
         <div class="result">
             <label>Winnow Results:</label>
             <span>
@@ -79,4 +87,3 @@
 </body>
 
 </html>
-

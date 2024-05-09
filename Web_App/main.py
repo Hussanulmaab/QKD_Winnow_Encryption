@@ -4,6 +4,10 @@ import os
 from Winnow_1.Winnow_1_Web import Winnow_1_Web
 from Performance_Check.Performance_Check import Performance_Check
 from Permutation_Winnow.Winnow_Rounds import Winnow_Rounds
+from fastapi.responses import FileResponse
+from starlette.responses import StreamingResponse
+import io
+import zipfile
 
 app = FastAPI()
 
@@ -36,3 +40,22 @@ async def upload_files(request: Request, file1: UploadFile = File(...), file2: U
 
     # return templates.TemplateResponse("Results.html", {"request": request, "filename1": file1.filename, "filename2": file2.filename, "Winnow_Msg": Winnow_Msg, "results": results})
     return templates.TemplateResponse("Results.html", {"request": request, "Winnow_Msg": Winnow_Msg, "results": results})
+
+@app.get("/download")
+async def download_files(request: Request):
+    # Define file paths
+    file_paths = ["./Final_Transmitter.txt", "./Final_Receiver.txt"]
+
+    # Create an in-memory ZIP file
+    zip_data = io.BytesIO()
+    with zipfile.ZipFile(zip_data, mode="w") as zip_file:
+        for file_path in file_paths:
+            # Add each file to the ZIP archive
+            zip_file.write(file_path)
+
+    # Move the pointer to the beginning of the in-memory ZIP file
+    zip_data.seek(0)
+
+    # Return the ZIP file as a streaming response
+    return StreamingResponse(zip_data, media_type="application/zip", headers={"Content-Disposition": "attachment;filename=downloaded_files.zip"})
+
