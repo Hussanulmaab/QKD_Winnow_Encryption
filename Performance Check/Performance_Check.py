@@ -1,4 +1,22 @@
-n = input("Enter n : ")
+import os
+def count_directories(folder_path):
+    # Initialize a counter for directories
+    directory_count = 0
+
+    # Iterate over all items in the folder
+    for item in os.listdir(folder_path):
+        # Check if the item is a directory
+        if os.path.isdir(os.path.join(folder_path, item)):
+            directory_count += 1
+
+    return directory_count
+
+
+# Specify the path to the folder you want to check
+folder_path = '../Permutation_Winnow/'
+
+# Get the count of directories in the folder
+n = count_directories(folder_path) + 1
 
 print("----------------------------------------------------------------------------------------------------------")
 print("-----------------------------------------------ROUND 1----------------------------------------------------")
@@ -21,9 +39,9 @@ with open("Receiver_Sifted.txt", 'r') as Receiver_Sifted_bits:
 print("\n-------------------------------------------BEFORE WINNOW ENCRYPTION -----------------------------------------\n")
 
 Transmitter_Bits_spaced = ' '.join(Transmitter_Bits[i:i+7] for i in range(0, len(Transmitter_Bits), 7))
-print("Ali Bits are : " + Transmitter_Bits_spaced[:1000])
+print("Tx Bits are : " + Transmitter_Bits_spaced[:3000])
 Receiver_Bits_spaced = ' '.join(Receiver_Bits[i:i+7] for i in range(0, len(Receiver_Bits), 7))
-print("Receiver Bits are : " + Receiver_Bits_spaced[:1000])
+print("Rx Bits are : " + Receiver_Bits_spaced[:3000])
 
 check_Error_String = ""
 Error_Bits = 0
@@ -36,7 +54,7 @@ for i in range(0, int(len(Transmitter_Bits))):
         Error_Bits += 1
 
 Error_String_Spaced = ' '.join(check_Error_String[i:i+7] for i in range(0, len(check_Error_String), 7))
-print("Error Bits   : " + Error_String_Spaced[:1000])
+print("Error Bits  : " + Error_String_Spaced[:3000])
 
 
 print("Number of Error Bits are " + str(Error_Bits) + " out of " + str(len(Transmitter_Bits)))
@@ -55,9 +73,9 @@ with open("../Winnow Encryption Main Algorithm/Receiver_Winnow-1_Final.txt", 'r'
 print("\n-------------------------------------------After WINNOW ENCRYPTION -----------------------------------------\n")
 
 Transmitter_Bits_spaced = ' '.join(Transmitter_Bits[i:i+7] for i in range(0, len(Transmitter_Bits), 7))
-print("Ali Bits are : " + Transmitter_Bits_spaced[:1000])
+print("Tx Bits are : " + Transmitter_Bits_spaced[:3000])
 Receiver_Bits_spaced = ' '.join(Receiver_Bits[i:i+7] for i in range(0, len(Receiver_Bits), 7))
-print("Receiver Bits are : " + Receiver_Bits_spaced[:1000])
+print("Rx Bits are : " + Receiver_Bits_spaced[:3000])
 
 check_Error_String = ""
 Error_Bits = 0
@@ -70,7 +88,7 @@ for i in range(0, int(len(Transmitter_Bits))):
         Error_Bits += 1
 
 Error_String_Spaced = ' '.join(check_Error_String[i:i+7] for i in range(0, len(check_Error_String), 7))
-print("Error Bits   : " + Error_String_Spaced[:1000])
+print("Error Bits  : " + Error_String_Spaced[:3000])
 
 print("Number of Error Bits are " + str(Error_Bits) + " out of " + str(len(Transmitter_Bits)))
 Error_Percentage = (Error_Bits/int(len(Transmitter_Bits))) * 100
@@ -93,9 +111,9 @@ for k in range(2, int(n)+1):
     print("\n-------------------------------------------BEFORE WINNOW ENCRYPTION -----------------------------------------\n")
 
     Transmitter_Bits_spaced = ' '.join(Transmitter_Bits[i:i + 7] for i in range(0, len(Transmitter_Bits), 7))
-    print("Ali Bits are : " + Transmitter_Bits_spaced[:1000])
+    print("Tx Bits are : " + Transmitter_Bits_spaced[:3000])
     Receiver_Bits_spaced = ' '.join(Receiver_Bits[i:i + 7] for i in range(0, len(Receiver_Bits), 7))
-    print("Receiver Bits are : " + Receiver_Bits_spaced[:1000])
+    print("Rx Bits are : " + Receiver_Bits_spaced[:3000])
 
     check_Error_String = ""
     Error_Bits = 0
@@ -108,7 +126,7 @@ for k in range(2, int(n)+1):
             Error_Bits += 1
 
     Error_String_Spaced = ' '.join(check_Error_String[i:i + 7] for i in range(0, len(check_Error_String), 7))
-    print("Error Bits   : " + Error_String_Spaced[:1000])
+    print("Error Bits  : " + Error_String_Spaced[:3000])
 
     print("Number of Error Bits are " + str(Error_Bits) + " out of " + str(len(Transmitter_Bits)))
 
@@ -127,9 +145,9 @@ for k in range(2, int(n)+1):
     print("\n-------------------------------------------After WINNOW ENCRYPTION -----------------------------------------\n")
 
     Transmitter_Bits_spaced = ' '.join(Transmitter_Bits[i:i + 7] for i in range(0, len(Transmitter_Bits), 7))
-    print("Ali Bits are : " + Transmitter_Bits_spaced[:1000])
+    print("Tx Bits are : " + Transmitter_Bits_spaced[:3000])
     Receiver_Bits_spaced = ' '.join(Receiver_Bits[i:i + 7] for i in range(0, len(Receiver_Bits), 7))
-    print("Receiver Bits are : " + Receiver_Bits_spaced[:1000])
+    print("Rx Bits are : " + Receiver_Bits_spaced[:3000])
 
     check_Error_String = ""
     Error_Bits = 0
@@ -142,9 +160,10 @@ for k in range(2, int(n)+1):
             Error_Bits += 1
 
     Error_String_Spaced = ' '.join(check_Error_String[i:i + 7] for i in range(0, len(check_Error_String), 7))
-    print("Error Bits   : " + Error_String_Spaced[:1000])
+    print("Error Bits  : " + Error_String_Spaced[:3000])
 
     print("Number of Error Bits are " + str(Error_Bits) + " out of " + str(len(Transmitter_Bits)))
     Error_Percentage = (Error_Bits/int(len(Transmitter_Bits))) * 100
     print("Error Percentage is " + str(Error_Percentage))
+
 

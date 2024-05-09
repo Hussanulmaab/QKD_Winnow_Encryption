@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333333;
+        }
+
+        .result {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eeeeee;
+            padding-bottom: 20px;
+        }
+
+        .result label {
+            font-weight: bold;
+            color: #555555;
+        }
+
+        .result span {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .winnow {
+            margin-left: 20px;
+            color: #009688;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Results</h1>
+        <div class="result">
+            <label>Transmitter Final</label>
+            <a href="../" download="Final_Transmitter.txt">Final_Transmitter.txt</a>
+        </div>
+        <div class="result">
+            <label>Receiver Final</label>
+            <a href="../" download="Final_Receiver.txt">Final_Receiver.txt</a>
+        </div>
+        <div class="result">
+            <label>Winnow Results:</label>
+            <span>
+                <ul>
+                    {% for result in results %}
+                    <li class="winnow">Winnow Error Percentage {{ loop.index - 1 }} - {{ result }}</li>
+                    {% endfor %}
+                </ul>
+            </span>
+        </div>
+    </div>
+</body>
+
+</html>
+
