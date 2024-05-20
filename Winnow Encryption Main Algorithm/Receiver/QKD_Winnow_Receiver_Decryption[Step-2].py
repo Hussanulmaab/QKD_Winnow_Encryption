@@ -12,10 +12,10 @@ with open("Alice_Winnow-1-Encrypted_File.txt", 'r') as Alice_Encrypted:
 # with open("Alice_Sifted_File.txt", 'r') as Alice_Sifted:
 #     Alice_Sifted_Var = Alice_Sifted.read()
 
-with open("../Performance Check/Receiver_Sifted.txt", 'r') as Bob_Sifted:
+with open("../../Performance Check/Receiver_Sifted.txt", 'r') as Bob_Sifted:
     Bob_Sifted_Var = Bob_Sifted.read()
 
-with open("../Performance Check/Transmitter_Sifted.txt", 'r') as Alice_Sifted:
+with open("../../Performance Check/Transmitter_Sifted.txt", 'r') as Alice_Sifted:
     Alice_Sifted_Var = Alice_Sifted.read()
 
 print("Ali 1 : " + Alice_Sifted_Var)
@@ -108,7 +108,7 @@ print("List : " + str(Alice_Removal_Blocks))
 with open("Bob_Winnow-1_Final.txt", "w") as Final_Bob_Bits:
     Final_Bob_Bits.write(Corrected_Bob_Sifted_Var)
 
-with open("Removal_Block_file_1.txt", 'wb') as Removal_bits:
+with open("../Removal_Block_file_1.txt", 'wb') as Removal_bits:
     pickle.dump(Alice_Removal_Blocks, Removal_bits)
 
 # closing files

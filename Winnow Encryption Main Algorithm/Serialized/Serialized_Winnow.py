@@ -2,10 +2,10 @@
 import pickle
 
 def Serialized_Winnow():
-    f = open("../Performance Check/Transmitter_Sifted.txt", "r")
+    f = open("../../Performance Check/Transmitter_Sifted.txt", "r")
     data = f.read()
 
-    with open("Transmitter_Winnow-1-Encrypted_File.txt", "w") as Transmitter_Encrypted:
+    with open("../Transmitter/Transmitter_Winnow-1-Encrypted_File.txt", "w") as Transmitter_Encrypted:
         print("Transmitter Encryption created")
     Transmitter_Encrypted.close()
 
@@ -47,7 +47,7 @@ def Serialized_Winnow():
         elif (parity_check % 2) == 1:
             Synd_Vector += str(1)
 
-        with open("Transmitter_Winnow-1-Encrypted_File.txt", "a") as Transmitter_Encrypted:
+        with open("../Transmitter/Transmitter_Winnow-1-Encrypted_File.txt", "a") as Transmitter_Encrypted:
 
             for row in range(len(H3_Syndrome_Cal_Matrix)):
                 temp = 0
@@ -73,10 +73,10 @@ def Serialized_Winnow():
 
     # ----------------------------------------Receiver Encryption Start----------------------------------------
 
-    f = open("../Performance Check/Receiver_Sifted.txt", "r")
+    f = open("../../Performance Check/Receiver_Sifted.txt", "r")
     data = f.read()
 
-    with open("Receiver_Winnow-1-Encrypted_File.txt", "w") as Receiver_Encrypted:
+    with open("../Receiver/Receiver_Winnow-1-Encrypted_File.txt", "w") as Receiver_Encrypted:
         print("Receiver Encryption created")
     Receiver_Encrypted.close()
 
@@ -119,7 +119,7 @@ def Serialized_Winnow():
         elif (parity_check % 2) == 1:
             Synd_Vector += str(1)
 
-        with open("Receiver_Winnow-1-Encrypted_File.txt", "a") as Receiver_Encrypted:
+        with open("../Receiver/Receiver_Winnow-1-Encrypted_File.txt", "a") as Receiver_Encrypted:
 
             for row in range(len(H3_Syndrome_Cal_Matrix)):
                 temp = 0
@@ -145,10 +145,10 @@ def Serialized_Winnow():
 
     # --------------------------------------------Receiver Decryption Start---------------------------------
 
-    with open("Receiver_Winnow-1-Encrypted_File.txt", 'r') as Receiver_Encrypted:
+    with open("../Receiver/Receiver_Winnow-1-Encrypted_File.txt", 'r') as Receiver_Encrypted:
         Receiver_Encrypted_Var = Receiver_Encrypted.read()
 
-    with open("Transmitter_Winnow-1-Encrypted_File.txt", 'r') as Transmitter_Encrypted:
+    with open("../Transmitter/Transmitter_Winnow-1-Encrypted_File.txt", 'r') as Transmitter_Encrypted:
         Transmitter_Encrypted_Var = Transmitter_Encrypted.read()
 
     # with open("Receiver_Sifted_File.txt", 'r') as Receiver_Sifted:
@@ -157,10 +157,10 @@ def Serialized_Winnow():
     # with open("Transmitter_Sifted_File.txt", 'r') as Transmitter_Sifted:
     #     Transmitter_Sifted_Var = Transmitter_Sifted.read()
 
-    with open("../Performance Check/Receiver_Sifted.txt", 'r') as Receiver_Sifted:
+    with open("../../Performance Check/Receiver_Sifted.txt", 'r') as Receiver_Sifted:
         Receiver_Sifted_Var = Receiver_Sifted.read()
 
-    with open("../Performance Check/Transmitter_Sifted.txt", 'r') as Transmitter_Sifted:
+    with open("../../Performance Check/Transmitter_Sifted.txt", 'r') as Transmitter_Sifted:
         Transmitter_Sifted_Var = Transmitter_Sifted.read()
 
     print("Tx 1 : " + Transmitter_Sifted_Var)
@@ -250,10 +250,10 @@ def Serialized_Winnow():
     print("Receiver 2 : " + Corrected_Receiver_Sifted_Var)
     print("List : " + str(Transmitter_Removal_Blocks))
 
-    with open("Receiver_Winnow-1_Final.txt", "w") as Final_Receiver_Bits:
+    with open("../Receiver/Receiver_Winnow-1_Final.txt", "w") as Final_Receiver_Bits:
         Final_Receiver_Bits.write(Corrected_Receiver_Sifted_Var)
 
-    with open("Removal_Block_file_1.txt", 'wb') as Removal_bits:
+    with open("../Removal_Block_file_1.txt", 'wb') as Removal_bits:
         pickle.dump(Transmitter_Removal_Blocks, Removal_bits)
 
     # closing files
@@ -268,7 +268,7 @@ def Serialized_Winnow():
 
     # ---------------------------------------------------Transmitter Decryption of Round i----------------------------------
 
-    with open("Removal_Block_file_1.txt", 'rb') as Removal_bits:
+    with open("../Removal_Block_file_1.txt", 'rb') as Removal_bits:
         Transmitter_Removal_Blocks = pickle.load(Removal_bits)
         Removal_bits.close()
 
@@ -276,7 +276,7 @@ def Serialized_Winnow():
     #     Unchanged_data = Transmitter_Sifted.read()
     #     Transmitter_Sifted.close()
 
-    with open("../Performance Check/Transmitter_Sifted.txt", 'r') as Transmitter_Sifted:
+    with open("../../Performance Check/Transmitter_Sifted.txt", 'r') as Transmitter_Sifted:
         Unchanged_data = Transmitter_Sifted.read()
         Transmitter_Sifted.close()
 
@@ -307,7 +307,7 @@ def Serialized_Winnow():
     print("After  : " + Corrected_Transmitter_Bits)
     print("Removed Transmitter bits and Created the file 'NAMED = Transmitter_Winnow-1_Final.txt'")
 
-    with open("Transmitter_Winnow-1_Final.txt", "w") as Final_Transmitter_Bits:
+    with open("../Transmitter/Transmitter_Winnow-1_Final.txt", "w") as Final_Transmitter_Bits:
         Final_Transmitter_Bits.write(Corrected_Transmitter_Bits)
 
     Final_Transmitter_Bits.close()

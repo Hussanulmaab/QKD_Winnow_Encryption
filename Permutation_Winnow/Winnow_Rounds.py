@@ -32,10 +32,10 @@ for i in range(2, int(n) + 1):
 
     print("-------------------------------Permuting--------------------------------")
     if i == 2:
-        with open("../Winnow Encryption Main Algorithm/Transmitter_Winnow-1_Final.txt", "r") as Transmitter_file:
+        with open("../Winnow Encryption Main Algorithm/Transmitter/Transmitter_Winnow-1_Final.txt", "r") as Transmitter_file:
             Transmitter_data = np.array([int(bit) for bit in Transmitter_file.read().strip()])
 
-        with open("../Winnow Encryption Main Algorithm/Receiver_Winnow-1_Final.txt", "r") as Receiver_file:
+        with open("../Winnow Encryption Main Algorithm/Receiver/Receiver_Winnow-1_Final.txt", "r") as Receiver_file:
             Receiver_data = np.array([int(bit) for bit in Receiver_file.read().strip()])
 
     elif i > 2:

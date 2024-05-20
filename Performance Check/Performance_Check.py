@@ -64,10 +64,10 @@ print("Error Percentage is " + str(Error_Percentage))
 
 # After Winnow Encryption
 
-with open("../Winnow Encryption Main Algorithm/Transmitter_Winnow-1_Final.txt", 'r') as Transmitter_Sifted_bits:
+with open("../Winnow Encryption Main Algorithm/Transmitter/Transmitter_Winnow-1_Final.txt", 'r') as Transmitter_Sifted_bits:
     Transmitter_Bits = Transmitter_Sifted_bits.read()
 
-with open("../Winnow Encryption Main Algorithm/Receiver_Winnow-1_Final.txt", 'r') as Receiver_Sifted_bits:
+with open("../Winnow Encryption Main Algorithm/Receiver/Receiver_Winnow-1_Final.txt", 'r') as Receiver_Sifted_bits:
     Receiver_Bits = Receiver_Sifted_bits.read()
 
 print("\n-------------------------------------------After WINNOW ENCRYPTION -----------------------------------------\n")
