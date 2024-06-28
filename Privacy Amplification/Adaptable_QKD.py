@@ -5,9 +5,28 @@ import os
 import pickle
 import shutil
 import time
+import cryptomite
+from random import randint, sample
 
 # Start the timer
 start_time = time.time()
+
+def privacy_amplification(raw_key_bits: list, seed_bits: list, n_1, m):
+    dodis = cryptomite.Dodis(n_1, m)
+    return dodis.extract(raw_key_bits, seed_bits)
+
+def flip_random_bits(bits, flip_count):
+    """Flip `flip_count` bits in the `bits` list."""
+    indices = sample(range(len(bits)), flip_count)
+    flipped_bits = bits[:]
+    for i in indices:
+        flipped_bits[i] = 1 - flipped_bits[i]
+    return flipped_bits
+
+def calculate_error_rate(final, final_2):
+    errors = sum(1 for a, b in zip(final, final_2) if a != b)
+    error_rate = (errors / len(final)) * 100
+    return error_rate
 
 #-----------------------------Deleting Previous Useless Data Directries---------------------
 
@@ -18,10 +37,9 @@ for Dir in os.listdir('./'):
         # Use shutil.rmtree() to delete the directory and its contents recursively
         shutil.rmtree(Dir_Path)
 
+n = 5
 
-n = 4
-
-for i in range(2, int(n) + 1):
+for i in range(1, int(n) + 1):
 
     # -----------------------------Making New directry for separate rounds data ---------------------
 
@@ -35,14 +53,14 @@ for i in range(2, int(n) + 1):
     # Read data from Transmitter and Receiver Final files from previous rounds files for Permuting
 
     print("-------------------------------Permuting--------------------------------")
-    if i == 2:
-        with open("../Winnow Encryption Main Algorithm/Transmitter/Transmitter_Winnow-1_Final.txt", "r") as Transmitter_file:
+    if i == 1:
+        with open("./Transmitter_Sifted.txt", "r") as Transmitter_file:
             Transmitter_data = np.array([int(bit) for bit in Transmitter_file.read().strip()])
 
-        with open("../Winnow Encryption Main Algorithm/Receiver/Receiver_Winnow-1_Final.txt", "r") as Receiver_file:
+        with open("./Receiver_Sifted.txt", "r") as Receiver_file:
             Receiver_data = np.array([int(bit) for bit in Receiver_file.read().strip()])
 
-    elif i > 2:
+    elif i >= 2:
         with open("./Winnow_Round_" + str(i - 1) + "/Transmitter_Winnow-" + str(i - 1) + "_Final.txt", "r") as Transmitter_file:
             Transmitter_data = np.array([int(bit) for bit in Transmitter_file.read().strip()])
 
@@ -382,8 +400,41 @@ for i in range(2, int(n) + 1):
 
     # ---------------------------------------------------Transmitter Decryption End of Round i----------------------------------
 
+    # Adapting using PRNGs
+    # For Privacy Amplification, I am using Cryptomite Library of Quantinuum
 
 
+    n = m = len(Corrected_Transmitter_Bits)
+
+    bit_list = list(Corrected_Receiver_Sifted_Var)
+    input_bits = [int(bit) for bit in bit_list]
+
+    bit_list = list(Corrected_Transmitter_Bits)
+    input_bits_2 = [int(bit) for bit in bit_list]
+
+    # printing
+    print("---Inputs----")
+    print("I1:", input_bits)
+    print("I2:", input_bits_2)
+    seed_bits = [randint(0, 1) for _ in range(n)]
+    print("S1:", seed_bits)
+
+    # performing PRNG
+    final = privacy_amplification(input_bits, seed_bits, n, m)
+    final_2 = privacy_amplification(input_bits_2, seed_bits, n, m)
+
+    # printing
+    print("---Outputs----")
+    print("O1:", final)
+    print("O2:", final_2)
+
+
+    # Calculate Error rate
+    error_rate = calculate_error_rate(final, final_2)
+    print(f"Error rate: {error_rate:.2f}%")
+
+    if int(error_rate) == 0:
+        break
 
 # End the timer
 end_time = time.time()

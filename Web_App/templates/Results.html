@@ -66,19 +66,13 @@
 <body>
     <div class="container">
         <h1>Results</h1>
-        <div class="result">
-            <label>Transmitter Final</label>
-        </div>
-        <div class="result">
-            <label>Receiver Final</label>
-        </div>
         <a href="/download">Download Final Files</a>
         <div class="result">
             <label>Winnow Results:</label>
             <span>
                 <ul>
                     {% for result in results %}
-                    <li class="winnow">Winnow Error Percentage {{ loop.index - 1 }} - {{ result }}</li>
+                    <li class="winnow">Winnow Error Percentage {{ loop.index - 1 }} - {{ '%.3f'|format(result) }}</li>
                     {% endfor %}
                 </ul>
             </span>

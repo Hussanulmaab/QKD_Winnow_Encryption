@@ -1,5 +1,8 @@
 # ----------------------------------------Transmitter Encryption Start----------------------------------------
-import pickle
+import pickle, time
+
+# Start the timer
+start_time = time.time()
 
 def Serialized_Winnow():
     f = open("../../Performance Check/Transmitter_Sifted.txt", "r")
@@ -18,7 +21,7 @@ def Serialized_Winnow():
             for j in range(0, 7):
                 block += data[(7 * i) + j]
             if i % 1000 == 7:
-                print("Block " + '%s' % i + " :: " + block)
+                # print("Block " + '%s' % i + " :: " + block)
                 x = i
             global x_bits
             x_bits = block
@@ -62,7 +65,8 @@ def Serialized_Winnow():
             Transmitter_Encrypted.write(Synd_Vector)
 
             if x % 1000 == 7:
-                print("Syndrome -- " + Synd_Vector)
+                # print("Syndrome -- " + Synd_Vector)
+                useless = "useless"
 
         Transmitter_Encrypted.close()
 
@@ -89,7 +93,7 @@ def Serialized_Winnow():
             for j in range(0, 7):
                 block += data[(7 * i) + j]
             if i % 1000 == 7:
-                print("Block " + '%s' % i + " :: " + block)
+                # print("Block " + '%s' % i + " :: " + block)
                 x = i
             global x_bits
             x_bits = block
@@ -134,7 +138,8 @@ def Serialized_Winnow():
             Receiver_Encrypted.write(Synd_Vector)
 
             if x % 1000 == 7:
-                print("Syndrome -- " + Synd_Vector)
+                # print("Syndrome -- " + Synd_Vector)
+                uselss = "useless"
 
         Receiver_Encrypted.close()
 
@@ -163,8 +168,8 @@ def Serialized_Winnow():
     with open("../../Performance Check/Transmitter_Sifted.txt", 'r') as Transmitter_Sifted:
         Transmitter_Sifted_Var = Transmitter_Sifted.read()
 
-    print("Tx 1 : " + Transmitter_Sifted_Var)
-    print("Rx 1 : " + Receiver_Sifted_Var)
+    # print("Tx 1 : " + Transmitter_Sifted_Var)
+    # print("Rx 1 : " + Receiver_Sifted_Var)
     Corrected_Receiver_Sifted_Var = ""
 
     counter = -1
@@ -246,9 +251,9 @@ def Serialized_Winnow():
             # also remove
             Transmitter_Removal_Blocks.append(counter)
 
-    # Out of loop
-    print("Receiver 2 : " + Corrected_Receiver_Sifted_Var)
-    print("List : " + str(Transmitter_Removal_Blocks))
+    # # Out of loop
+    # print("Receiver 2 : " + Corrected_Receiver_Sifted_Var)
+    # print("List : " + str(Transmitter_Removal_Blocks))
 
     with open("../Receiver/Receiver_Winnow-1_Final.txt", "w") as Final_Receiver_Bits:
         Final_Receiver_Bits.write(Corrected_Receiver_Sifted_Var)
@@ -280,7 +285,7 @@ def Serialized_Winnow():
         Unchanged_data = Transmitter_Sifted.read()
         Transmitter_Sifted.close()
 
-    print("Before : " + Unchanged_data)
+    # print("Before : " + Unchanged_data)
 
     Corrected_Transmitter_Bits = ""
     counter = 0
@@ -304,8 +309,8 @@ def Serialized_Winnow():
 
         counter += 1
 
-    print("After  : " + Corrected_Transmitter_Bits)
-    print("Removed Transmitter bits and Created the file 'NAMED = Transmitter_Winnow-1_Final.txt'")
+    # print("After  : " + Corrected_Transmitter_Bits)
+    # print("Removed Transmitter bits and Created the file 'NAMED = Transmitter_Winnow-1_Final.txt'")
 
     with open("../Transmitter/Transmitter_Winnow-1_Final.txt", "w") as Final_Transmitter_Bits:
         Final_Transmitter_Bits.write(Corrected_Transmitter_Bits)
@@ -315,3 +320,9 @@ def Serialized_Winnow():
     # ---------------------------------------------------Transmitter Decryption End----------------------------------
 
 Serialized_Winnow()
+
+
+# End the timer
+end_time = time.time()
+elapsed_time = end_time - start_time
+print(f"Elapsed time: {elapsed_time:.2f} seconds")
